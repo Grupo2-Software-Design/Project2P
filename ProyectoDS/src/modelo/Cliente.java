@@ -12,6 +12,7 @@ public class Cliente{
     private String nombre;
     private String apellido;
     private String direccion;
+    private String correo;
     private LinkedList<Mascota> mascotas;
 
     public Cliente() {
@@ -77,4 +78,14 @@ public class Cliente{
         return this;
     }
 
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+    
+    
+    
 }

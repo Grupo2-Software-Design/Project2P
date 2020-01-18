@@ -10,15 +10,9 @@ package modelo;
  * @author Freddy
  */
 public class Cotizacion extends Documento{
-    private String numCorizacion;
+    private String numCotizacion;
 
-    public Cotizacion(String numCorizacion) {
-        this.numCorizacion = numCorizacion;
+    public Cotizacion(String numCotizacion) {
+        this.numCotizacion = numCotizacion;
     }
-    
-    @Override
-    public void enviarCorreo() {
-    
     }
-    
-}

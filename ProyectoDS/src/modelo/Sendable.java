@@ -5,10 +5,12 @@
  */
 package modelo;
 
+import javax.mail.MessagingException;
+
 /**
  *
  * @author Freddy
  */
 public interface Sendable {
-    public void enviarCorreo();
+    public void enviarCorreo() throws MessagingException;
 }

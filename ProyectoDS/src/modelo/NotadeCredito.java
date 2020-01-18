@@ -15,10 +15,4 @@ public class NotadeCredito extends Documento{
     public NotadeCredito(String numNota) {
         this.numNota = numNota;
     }
-
-    @Override
-    public void enviarCorreo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
 }
