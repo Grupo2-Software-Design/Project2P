@@ -1,2 +1,2 @@
 # Project2P
-Projecto del segundo parcial
+Proyecto del segundo parcial
