@@ -15,4 +15,7 @@ public abstract class Documento implements Sendable{
     private Date fechaEmision; 
     private String descripcion;
     
+    public void enviarCorreo(){
+        
+    }
 }
