@@ -5,6 +5,8 @@
  */
 package proyectods;
 
+import modelo.DbConnection;
+
 /**
  *
  * @author Freddy
@@ -16,6 +18,7 @@ public class ProyectoDS {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        DbConnection db=new DbConnection();
+        db.conectarMySQL();
     }
-    
 }
