@@ -2,7 +2,10 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Properties;
+import proyectods.ProyectoDS;
 
 /**
  *
@@ -40,5 +43,38 @@ public class DbConnection {
         }
 
         return conn;
+    }
+    
+    public int addDireccion(int mz,String slr,String ciudad,String cPrincipal, String cSecundaria){
+        String query = "insert into Direccion values ( default,"+mz+","+slr+","+ciudad+","+cPrincipal+","+cSecundaria+");";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+            String q2 = "SELECT LAST_INSERT_ID() as id";
+            ResultSet rs = st.executeQuery(q2);
+            return Integer.parseInt(rs.getString("id"));
+            
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return 0;
+    }
+    
+    public int detalleCotizacion(int producto,int cantidad,float precio,int cotizacion){
+        //corregir diagrama de base de datos cotizacion tiene detalle cotizacion -tabla intermedia yo creo
+        String query = "insert to DetalleCotizacion values( default,"+","+producto+","+cantidad+","+precio+");";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+            String q2 = "SELECT LAST_INSERT_ID() as id";
+            ResultSet rs = st.executeQuery(q2);
+            return Integer.parseInt(rs.getString("id"));
+
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return 0;
     }
 }
