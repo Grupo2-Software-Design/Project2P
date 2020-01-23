@@ -10,11 +10,9 @@ package modelo;
  * @author Freddy
  */
 public class Administrativo extends Empleado{
-    
-    public Administrativo(String cedula, String nombre, String apellido, String telefono, Usuario user) {
-        super(cedula, nombre, apellido, telefono, user);
-    }
-    
 
+    public Administrativo(String cedula, String nombre, String apellido, String telefono, Usuario user, String TipoEmpleado, Sucursal sucursal) {
+        super(cedula, nombre, apellido, telefono, user, TipoEmpleado, sucursal);
+    }
     
 }

@@ -14,8 +14,8 @@ import proyectods.ProyectoDS;
  */
 public class PersonalCaja extends Empleado{
 
-    public PersonalCaja(String cedula, String nombre, String apellido, String telefono, Usuario user) {
-        super(cedula, nombre, apellido, telefono, user);
+    public PersonalCaja(String cedula, String nombre, String apellido, String telefono, Usuario user, String TipoEmpleado, Sucursal sucursal) {
+        super(cedula, nombre, apellido, telefono, user, TipoEmpleado, sucursal);
     }
     
     public void agregarCliente(String cedula, String nombre, String apellido, int direccion, String telefono){

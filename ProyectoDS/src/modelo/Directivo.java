@@ -11,9 +11,8 @@ package modelo;
  */
 public class Directivo extends Empleado{
 
-    public Directivo(String cedula, String nombre, String apellido, String telefono, Usuario user) {
-        super(cedula, nombre, apellido, telefono, user);
+    public Directivo(String cedula, String nombre, String apellido, String telefono, Usuario user, String TipoEmpleado, Sucursal sucursal) {
+        super(cedula, nombre, apellido, telefono, user, TipoEmpleado, sucursal);
     }
-
 
 }

@@ -6,6 +6,7 @@
 package modelo;
 
 import java.util.Date;
+import java.util.List;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Transport;
@@ -34,5 +35,8 @@ public abstract class Documento implements Sendable{
         Transport.send(message);
     }
 
-    
+    public abstract void agregar();
+    public abstract void update(String argNuevo,String var,String argViejo);
+    public abstract List<Documento> searchProducto(String arg,String var);
+    public abstract void delete();
 }

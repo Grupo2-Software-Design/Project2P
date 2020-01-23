@@ -107,6 +107,19 @@ public class DbConnection {
         }
         return 0;
     }
-    
+    public int detallerServicio(int servicio, int cantidad,float precio_venta, int factura){
+        String query= "insert to detalleServicio values( default,"+","+servicio+","+cantidad+","+precio_venta+","+factura+");";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+            String q2 = "SELECT LAST_INSERT_ID() as id";
+            ResultSet rs = st.executeQuery(q2);
+            return Integer.parseInt(rs.getString("id"));
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return 0;
+    }
 
 }
