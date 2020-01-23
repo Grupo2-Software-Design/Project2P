@@ -1,7 +1,11 @@
 package modelo;
 
 import java.util.LinkedList;
+import java.util.List;
+
 import proyectods.ProyectoDS;
+
+import java.sql.ResultSet;
 import java.sql.Statement;
 
 /**
@@ -89,7 +93,7 @@ public class Cliente{
         this.correo = correo;
     }
 
-    public void agregarCliente(){
+    public void agregar(){
         String query="insert into Persona values ("+cedula+","+nombre+","+apellido+","+direccion+","+correo;
         try{
             Statement st = ProyectoDS.cdb.createStatement();
@@ -99,8 +103,8 @@ public class Cliente{
             System.out.println("Problemas en la Query, "+e);
         }
     }   
-    public void updateCliente(String data){
-        String query = "UPDATE Persona" + " SET " + data + " WHERE " + "cedula = " + cedula+";";
+    public void update(String argNuevo,String var,String argViejo){
+        String query = "UPDATE Persona SET " + argNuevo + " WHERE " + var+" = " + argViejo+";";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
             st.executeQuery(query);
@@ -108,7 +112,18 @@ public class Cliente{
         catch(Exception e){
             System.out.println("Problemas en la Query, "+e);
         }
-    }   
+    }
+    
+    public void delete(){
+        String query = "UPDATE Cliente SET "+"0 WHERE cedula = "+cedula+";";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+    }
     
     
     

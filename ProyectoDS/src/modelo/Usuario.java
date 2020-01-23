@@ -4,8 +4,14 @@
  * and open the template in the editor.
  */
 package modelo;
+
 import proyectods.ProyectoDS;
+
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
+
 
 /**
  *
@@ -27,8 +33,8 @@ public class Usuario {
     public String getPassword() {
         return password;
     }
-    public void agregarUser(){
-        String query="insert into Usuario values ("+username+","+password+")";
+    public void agregar(){
+        String query="insert into Usuario values ("+username+","+password+");";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
             st.executeQuery(query);
@@ -37,8 +43,39 @@ public class Usuario {
             System.out.println("Problemas en la Query, "+e);
         }
     }   
-    public void updateUser(String data){
-        String query = "UPDATE Usuario" + " SET " + data + " WHERE " + "username = " + username+";";
+    public void update(String argNuevo,String var,String argViejo){
+        String query = "UPDATE USUARIO SET " + argNuevo + " WHERE " + var+" = " + argViejo+";";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+    }
+    public List<Usuario> searchUsuarios(String arg,String var){
+        List<Usuario> usuarios = new LinkedList<>();
+        String query = "SELECT * FROM Usuario  WHERE "+var+" = "+arg+" and estado = 1;";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                String usr = rs.getString("usuario");
+                String pass = rs.getString("contraseña");
+                Usuario user = new Usuario(usr, pass);
+                usuarios.add(user);
+            }
+            return usuarios;
+                
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return null;
+    }
+    
+    public void delete(){
+        String query = "UPDATE Usuario SET "+"0 WHERE usuario = "+username+";";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
             st.executeQuery(query);

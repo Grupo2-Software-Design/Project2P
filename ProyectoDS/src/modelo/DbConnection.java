@@ -77,4 +77,36 @@ public class DbConnection {
         }
         return 0;
     }
+    public int detalleTraslado(int mascota,float monto,int factura,int direccion){
+        String query = "insert to detalleTraslado values( default,"+","+mascota+","+monto+","+factura+","+direccion+");";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+            String q2 = "SELECT LAST_INSERT_ID() as id";
+            ResultSet rs = st.executeQuery(q2);
+            return Integer.parseInt(rs.getString("id"));
+
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return 0;
+    }
+    public int detalleProducto(int producto,int cantidad,float precio_venta,int factura){
+        String query = "insert to detalleProducto values( default,"+","+producto+","+cantidad+","+precio_venta+","+factura+");";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+            String q2 = "SELECT LAST_INSERT_ID() as id";
+            ResultSet rs = st.executeQuery(q2);
+            return Integer.parseInt(rs.getString("id"));
+
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return 0;
+    }
+    
+
 }
