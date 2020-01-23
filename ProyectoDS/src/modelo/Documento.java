@@ -18,11 +18,11 @@ import javax.mail.internet.MimeMessage;
  * @author Freddy
  */
 public abstract class Documento implements Sendable{    
-    private Date fechaEmision; 
-    private String descripcion;
-    private Empleado personalCaja;
-    private Cliente cliente;
-    private DataMail datamail;
+    protected Date fechaEmision; 
+    protected String descripcion;
+    protected Empleado personalCaja;
+    protected Cliente cliente;
+    protected DataMail datamail;
 
     @Override
     public void enviarCorreo() throws MessagingException{

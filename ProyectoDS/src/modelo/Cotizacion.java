@@ -22,7 +22,7 @@ public class Cotizacion extends Documento{
 
     @Override
     public void agregar() {
-        String query = "insert into Cotizacion values ( default,"+super.+","+stock+","+precioIndividual+","+precioMayor+", 1,"+categoria+","+descripcion+")";
+        String query = "insert into Cotizacion values ("+ numCotizacion+","+super.fechaEmision+","+super.personalCaja.getCedula()+","+super.cliente.getCedula()+")";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
             st.executeQuery(query);
@@ -34,7 +34,6 @@ public class Cotizacion extends Documento{
 
     @Override
     public void update(String argNuevo, String var, String argViejo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
