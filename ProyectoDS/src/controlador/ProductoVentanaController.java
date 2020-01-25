@@ -122,8 +122,8 @@ public class ProductoVentanaController extends StackPane implements Initializabl
     @FXML
     private void añadirArticulo(ActionEvent event) {
         Producto prd = tabla.getSelectionModel().getSelectedItem();
-        //Venta vt = new Venta(Integer.parseInt(cantidadTxtField.getText()),prd,"Factura");
-        ProductoVentanaController.factura,getVentas().add(vt);
+        Venta vt = new Venta(Integer.parseInt(cantidadTxtField.getText()),prd,"Factura");
+        FacturarVentanaController.factura.getVentas().add(vt);
         cantidadTxtField.setText(null);
         
         

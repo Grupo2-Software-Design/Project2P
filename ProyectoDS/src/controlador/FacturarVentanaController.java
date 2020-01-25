@@ -19,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import modelo.Cotizacion;
+import modelo.Factura;
 
 /**
  * FXML Controller class
@@ -29,7 +30,7 @@ public class FacturarVentanaController extends StackPane implements Initializabl
     private Main application;
     @FXML
     private TableView<?> ventanaPro;
-    public static Cotizacion factura;
+    public static Factura factura;
     @FXML
     private TextField cedula;
     /**
