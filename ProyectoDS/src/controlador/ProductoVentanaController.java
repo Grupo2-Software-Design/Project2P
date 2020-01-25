@@ -70,12 +70,8 @@ public class ProductoVentanaController extends StackPane implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        combobox= new ComboBox<>();
-        searchArtTxtfield = new TextField();
-        cantidadTxtField = new TextField();
-        tabla = new TableView<>();
-        combobox.getItems().addAll("Nombre","Categoria","Descripción");
-
+        combobox.getItems().removeAll();
+        combobox.getItems().addAll("Nombre", "Categoria", "Descripción");
     }    
 
     @FXML
@@ -124,8 +120,6 @@ public class ProductoVentanaController extends StackPane implements Initializabl
         Producto prd = tabla.getSelectionModel().getSelectedItem();
         Venta vt = new Venta(Integer.parseInt(cantidadTxtField.getText()),prd,"Factura");
         FacturarVentanaController.factura.getVentas().add(vt);
-        cantidadTxtField.setText(null);
-        
-        
+        cantidadTxtField.setText(null); 
     }
 }
