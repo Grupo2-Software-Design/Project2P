@@ -46,7 +46,7 @@ public class DbConnection {
     }
     
     public int addDireccion(int mz,String slr,String ciudad,String cPrincipal, String cSecundaria){
-        String query = "insert into Direccion values ( default,"+mz+","+slr+","+ciudad+","+cPrincipal+","+cSecundaria+");";
+        String query = "insert into Direccion values ( default,'"+mz+"','"+slr+"','"+ciudad+"','"+cPrincipal+"','"+cSecundaria+"');";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
             st.executeQuery(query);

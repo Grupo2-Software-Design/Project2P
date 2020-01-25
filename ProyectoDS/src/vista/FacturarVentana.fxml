@@ -29,7 +29,7 @@
                   </StackPane>
                   <StackPane prefHeight="137.0" prefWidth="189.0">
                      <children>
-                        <TextField />
+                        <TextField fx:id="cedula" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="137.0" prefWidth="91.0">
@@ -91,10 +91,11 @@
             </HBox>
             <HBox prefHeight="428.0" prefWidth="1080.0">
                <children>
-                  <TableView prefHeight="428.0" prefWidth="670.0">
+                  <TableView fx:id="ventanaPro" prefHeight="428.0" prefWidth="670.0">
                     <columns>
-                      <TableColumn prefWidth="75.0" text="C1" />
-                      <TableColumn prefWidth="75.0" text="C2" />
+                      <TableColumn prefWidth="133.0" text="Id" />
+                      <TableColumn prefWidth="293.0" text="Nombre" />
+                        <TableColumn minWidth="0.0" prefWidth="242.0" text="Cantidad" />
                     </columns>
                   </TableView>
                   <Pane prefHeight="428.0" prefWidth="56.0" />
@@ -102,17 +103,17 @@
                      <children>
                         <StackPane prefHeight="88.0" prefWidth="356.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="ELIMINAR" />
+                              <Button mnemonicParsing="false" onAction="#eliminarProducto" prefHeight="45.0" prefWidth="120.0" text="ELIMINAR" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="88.0" prefWidth="356.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="FACTURAR" />
+                              <Button mnemonicParsing="false" onAction="#facturarListo" prefHeight="45.0" prefWidth="120.0" text="FACTURAR" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="94.0" prefWidth="356.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="NUEVO" />
+                              <Button mnemonicParsing="false" onAction="#actualizar" prefHeight="45.0" prefWidth="120.0" text="NUEVO" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="94.0" prefWidth="356.0">

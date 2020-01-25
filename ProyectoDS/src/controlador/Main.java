@@ -23,8 +23,8 @@ import modelo.DbConnection;
  * @author andre
  */
 public class Main extends Application {
-    public static DbConnection db=new DbConnection();
-    public static Connection cdb=db.conectarMySQL("proyectoDs","localhost");
+    public DbConnection db=new DbConnection();
+    public Connection cdb=db.conectarMySQL("proyectoDs","localhost");
     private Stage stage;
     private final double MINIMUM_WINDOW_WIDTH = 1080.0;
     private final double MINIMUM_WINDOW_HEIGHT = 720.0;
