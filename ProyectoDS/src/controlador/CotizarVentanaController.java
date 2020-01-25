@@ -46,6 +46,7 @@ public class CotizarVentanaController extends StackPane implements Initializable
         this.application = application;
     }
     
+    @FXML
     public void gotoProductos(ActionEvent event){
         if(application == null){
             System.out.println("F");
@@ -60,6 +61,7 @@ public class CotizarVentanaController extends StackPane implements Initializable
         }
     }
     
+    @FXML
     public void gotoServicios(ActionEvent event){
         if(application == null){
             System.out.println("F");
@@ -72,6 +74,10 @@ public class CotizarVentanaController extends StackPane implements Initializable
                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+
+    @FXML
+    private void makeCotizacion(ActionEvent event) {
     }
     
     
