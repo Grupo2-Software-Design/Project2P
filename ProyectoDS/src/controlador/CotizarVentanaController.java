@@ -12,7 +12,10 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
+import modelo.Cotizacion;
 
 /**
  * FXML Controller class
@@ -21,6 +24,16 @@ import javafx.scene.layout.StackPane;
  */
 public class CotizarVentanaController extends StackPane implements Initializable {
     private Main application;
+    @FXML
+    private Label empleadoName;
+    @FXML
+    private Label date;
+    @FXML
+    private Label hora;
+    @FXML
+    private TableView<?> table;
+    
+    public static Cotizacion cotizacion;
     /**
      * Initializes the controller class.
      * @param url
@@ -79,7 +92,16 @@ public class CotizarVentanaController extends StackPane implements Initializable
     @FXML
     private void makeCotizacion(ActionEvent event) {
     }
+
+    @FXML
+    private void eliminarProducto(ActionEvent event) {
+    }
+
+    @FXML
+    private void clearVentana(ActionEvent event) {
+    }
     
+
     
     
 }

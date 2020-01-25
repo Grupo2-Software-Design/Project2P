@@ -33,6 +33,14 @@ public class Producto implements Queryable {
         this.categoria = categoria;
         this.descripcion = descripcion;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public float getPrecioMayor() {
+        return precioMayor;
+    }
  
     public void agregar(){
         String query = "insert into Producto values ( default,"+nombre+","+stock+","+precioIndividual+","+precioMayor+", 1,"+categoria+","+descripcion+")";

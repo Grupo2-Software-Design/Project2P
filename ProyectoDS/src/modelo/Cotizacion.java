@@ -5,7 +5,9 @@
  */
 package modelo;
 
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.LinkedList;
 import java.util.List;
 import proyectods.ProyectoDS;
 
@@ -14,10 +16,13 @@ import proyectods.ProyectoDS;
  * @author Freddy
  */
 public class Cotizacion extends Documento{
-    private String numCotizacion;
+    private int numCotizacion;
+    private List<Venta> ventas;
 
-    public Cotizacion(String numCotizacion) {
+    public Cotizacion(int numCotizacion) {
         this.numCotizacion = numCotizacion;
+        ventas = new LinkedList<>();
+        getCotizacionID();
     }
 
     @Override
@@ -45,4 +50,33 @@ public class Cotizacion extends Documento{
     public void delete() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public int getNumCotizacion() {
+        return numCotizacion;
+    }
+
+    public void setNumCotizacion(int numCotizacion) {
+        this.numCotizacion = numCotizacion;
+    }
+
+    public List<Venta> getVentas() {
+        return ventas;
+    }
+
+    public void setVentas(List<Venta> ventas) {
+        this.ventas = ventas;
+    }
+    
+    private void getCotizacionID(){
+        String query = "SELECT MAX(id_cotizacion) FROM Cotizacion";
+        try{
+           Statement st = ProyectoDS.cdb.createStatement();
+           ResultSet rs = st.executeQuery(query); 
+           numCotizacion = Integer.parseInt(rs.getString("id"))+1;
+        }catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        
+    }
+    
     }
