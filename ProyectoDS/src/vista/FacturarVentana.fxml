@@ -84,7 +84,7 @@
                   </StackPane>
                   <StackPane prefHeight="150.0" prefWidth="200.0">
                      <children>
-                        <CheckBox mnemonicParsing="false" prefHeight="28.0" prefWidth="121.0" text="Domicilio" />
+                        <CheckBox fx:id="domicilio" mnemonicParsing="false" prefHeight="28.0" prefWidth="121.0" text="Domicilio" />
                      </children>
                   </StackPane>
                </children>
@@ -93,9 +93,10 @@
                <children>
                   <TableView fx:id="ventanaPro" prefHeight="428.0" prefWidth="670.0">
                     <columns>
-                      <TableColumn prefWidth="133.0" text="Id" />
-                      <TableColumn prefWidth="293.0" text="Nombre" />
-                        <TableColumn minWidth="0.0" prefWidth="242.0" text="Cantidad" />
+                      <TableColumn fx:id="id" prefWidth="158.99996948242188" text="Id" />
+                      <TableColumn fx:id="nombre" prefWidth="192.0" text="Nombre" />
+                        <TableColumn fx:id="canti" minWidth="0.0" prefWidth="152.0" text="Cantidad" />
+                        <TableColumn fx:id="tipo" minWidth="0.0" prefWidth="167.0" text="Tipo" />
                     </columns>
                   </TableView>
                   <Pane prefHeight="428.0" prefWidth="56.0" />
