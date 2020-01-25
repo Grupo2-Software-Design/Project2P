@@ -17,17 +17,19 @@ import javafx.scene.Scene;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import modelo.DbConnection;
+import modelo.Usuario;
 
 /**
  *
  * @author andre
  */
 public class Main extends Application {
-    public static DbConnection db=new DbConnection();
-    public static Connection cdb=db.conectarMySQL("proyectoDs","localhost");
+    public static DbConnection db;
+    public static Connection cdb;
     private Stage stage;
     private final double MINIMUM_WINDOW_WIDTH = 1080.0;
     private final double MINIMUM_WINDOW_HEIGHT = 720.0;
+    private Usuario user;
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
@@ -46,6 +48,13 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        db = new DbConnection();
+        try{
+            cdb = db.conectarMySQL("proyectoDs","localhost");
+            
+        }catch(Exception ex){
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Application.launch(Main.class, (java.lang.String[])null);
     }
     
@@ -73,6 +82,7 @@ public class Main extends Application {
     }
     
     void userLogout(){
+        user = null;
         gotoLogin();
     }
     
@@ -111,5 +121,15 @@ public class Main extends Application {
         stage.sizeToScene();
         return (Node) loader.getController();
     }
+
+    public Usuario getUser() {
+        return user;
+    }
+
+    public void setUser(Usuario user) {
+        this.user = user;
+    }
+    
+    
     
 }

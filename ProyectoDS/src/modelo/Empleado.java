@@ -55,24 +55,7 @@ public class Empleado implements IUser {
             System.out.println("Problemas en la Query, "+e);
         }
     }
-    public List<Empleado> searchEmpleado(String arg,String var){
-        List<Empleado> empleados = new LinkedList<>();
-        String query = "SELECT * FROM Empleado  WHERE "+var+" = "+arg;
-        try{
-            Statement st = ProyectoDS.cdb.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while(rs.next()){
-                Empleado emp = new Empleado(rs.getString("cedula"),rs.getString("nombre"),rs.getString("apellido"),rs.getString("telefono"),new Usuario(rs.getString("username"),null),rs.getString("TipoEmpleado"),null);
-                empleados.add(emp);
-            }
-            return empleados;
-                
-        }
-        catch(Exception e){
-            System.out.println("Problemas en la Query, "+e);
-        }
-        return null;
-    }
+    
     
     public void delete(){
         String query = "UPDATE Empleado SET sucursal=NULL WHERE id_producto = "+cedula+";";

@@ -20,10 +20,12 @@ import java.util.List;
 public class Usuario {
     private String username;
     private String password;
+    private Type tipo;
 
-    public Usuario(String username, String password) {
+    public Usuario(String username, String password, Type tipo) {
         this.username = username;
         this.password = password;
+        this.tipo = tipo;
     }
 
     public String getUsername() {
@@ -53,26 +55,7 @@ public class Usuario {
             System.out.println("Problemas en la Query, "+e);
         }
     }
-    public List<Usuario> searchUsuarios(String arg,String var){
-        List<Usuario> usuarios = new LinkedList<>();
-        String query = "SELECT * FROM Usuario  WHERE "+var+" = "+arg+" and estado = 1;";
-        try{
-            Statement st = ProyectoDS.cdb.createStatement();
-            ResultSet rs = st.executeQuery(query);
-            while(rs.next()){
-                String usr = rs.getString("usuario");
-                String pass = rs.getString("contraseña");
-                Usuario user = new Usuario(usr, pass);
-                usuarios.add(user);
-            }
-            return usuarios;
-                
-        }
-        catch(Exception e){
-            System.out.println("Problemas en la Query, "+e);
-        }
-        return null;
-    }
+   
     
     public void delete(){
         String query = "UPDATE Usuario SET "+"0 WHERE usuario = "+username+";";
@@ -83,5 +66,7 @@ public class Usuario {
         catch(Exception e){
             System.out.println("Problemas en la Query, "+e);
         }
-    }   
+    }
+    
+    public enum Type{ADMIN,JEFEBODEGA,CAJERO}
 }

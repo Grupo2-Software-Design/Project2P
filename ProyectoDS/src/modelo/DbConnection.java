@@ -25,7 +25,7 @@ public class DbConnection {
         Connection conn = null;
         Properties proper = new Properties();
         proper.put("user", "root");
-        proper.put("password", "FPonce");
+        proper.put("password", "root");
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, proper);

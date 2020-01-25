@@ -37,7 +37,7 @@
                         <StackPane prefHeight="37.0" prefWidth="421.0" />
                         <StackPane prefHeight="150.0" prefWidth="240.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="userName" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="37.0" prefWidth="423.0" />
@@ -61,7 +61,7 @@
                         <StackPane prefHeight="37.0" prefWidth="420.0" />
                         <StackPane prefHeight="150.0" prefWidth="240.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="password" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="37.0" prefWidth="425.0" />
