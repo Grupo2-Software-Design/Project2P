@@ -12,7 +12,12 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import modelo.Servicio;
 
 /**
  * FXML Controller class
@@ -21,12 +26,26 @@ import javafx.scene.layout.StackPane;
  */
 public class ServicioCVentanaController extends StackPane implements Initializable {
     private Main application;
+    @FXML
+    private ComboBox<String> combobox;
+    @FXML
+    private TextField parametro;
+    @FXML
+    private TableColumn<Servicio, Integer> idColum;
+    @FXML
+    private TableColumn<Servicio, String> nombreColum;
+    @FXML
+    private TableColumn<Servicio, Float> precioColum;
+    @FXML
+    private TableColumn<Servicio, String> descripcionColum;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        combobox = new ComboBox<>();
+        combobox.getItems().addAll("Nombre","Categoria","Descripcion"); //Llenando opciones del comboBox
+        
     }    
 
     @FXML
@@ -46,6 +65,14 @@ public class ServicioCVentanaController extends StackPane implements Initializab
     
     public void setApp(Main application){
         this.application = application;
+    }
+
+    @FXML
+    private void buscar(ActionEvent event) {
+    }
+
+    @FXML
+    private void colocar(ActionEvent event) {
     }
     
 }

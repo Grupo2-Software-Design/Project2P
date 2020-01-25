@@ -42,7 +42,7 @@
                               </StackPane>
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <ComboBox prefWidth="150.0" />
+                                    <ComboBox fx:id="combobox" prefWidth="150.0" />
                                  </children>
                               </StackPane>
                            </children>
@@ -52,25 +52,28 @@
                               <Pane prefHeight="50.0" prefWidth="23.0" />
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <TextField />
+                                    <TextField fx:id="parametro" />
                                  </children>
                               </StackPane>
                               <StackPane prefHeight="50.0" prefWidth="134.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="97.0" text="BUSCAR" />
+                                    <Button mnemonicParsing="false" onAction="#buscar" prefWidth="97.0" text="BUSCAR" />
                                  </children>
                               </StackPane>
                            </children>
                         </HBox>
                      </children>
                   </VBox>
+                  <Button mnemonicParsing="false" onAction="#colocar" prefHeight="63.0" prefWidth="141.0" text="COLOCAR" />
                </children>
             </HBox>
             <Pane prefHeight="43.0" prefWidth="1080.0" />
             <TableView prefHeight="382.0" prefWidth="1080.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="idColum" prefWidth="75.0" text="id" />
+                  <TableColumn fx:id="nombreColum" prefWidth="307.0" text="Nombre" />
+                  <TableColumn fx:id="precioColum" prefWidth="153.0" text="Precio" />
+                  <TableColumn fx:id="descripcionColum" minWidth="1.0" prefWidth="544.0" text="Descripcion" />
                </columns>
             </TableView>
             <HBox prefHeight="76.0" prefWidth="720.0">
