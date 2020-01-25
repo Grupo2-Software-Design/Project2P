@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ClientesVentanaController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <StackPane prefHeight="202.0" prefWidth="720.0">
+               <children>
+                  <Label text="CLIENTES">
+                     <font>
+                        <Font name="SansSerif Regular" size="70.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <HBox prefHeight="344.0" prefWidth="1080.0">
+               <children>
+                  <StackPane prefHeight="344.0" prefWidth="1092.0">
+                     <children>
+                        <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="BUSCAR" />
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+            <Pane prefHeight="98.0" prefWidth="1080.0" />
+            <HBox prefHeight="76.0" prefWidth="720.0">
+               <children>
+                  <StackPane prefHeight="74.0" prefWidth="121.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#backToMenu" text="ATRAS" />
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="60.0" prefWidth="560.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>

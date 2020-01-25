@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.EntregasVentanaController">
+   <children>
+      <VBox prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <StackPane prefHeight="184.0" prefWidth="1080.0">
+               <children>
+                  <Label text="ENTREGAS">
+                     <font>
+                        <Font name="SansSerif Regular" size="70.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+            <Pane prefHeight="67.0" prefWidth="1080.0" />
+            <TableView prefHeight="512.0" prefWidth="1080.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <HBox prefHeight="76.0" prefWidth="720.0">
+               <children>
+                  <StackPane prefHeight="74.0" prefWidth="121.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#backToMenu" text="ATRAS" />
+                     </children>
+                  </StackPane>
+                  <StackPane prefHeight="60.0" prefWidth="560.0" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</StackPane>
