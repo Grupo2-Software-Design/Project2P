@@ -40,7 +40,7 @@
             </HBox>
             <HBox prefHeight="428.0" prefWidth="1080.0">
                <children>
-                  <TableView prefHeight="428.0" prefWidth="670.0">
+                  <TableView fx:id="table" prefHeight="428.0" prefWidth="670.0">
                      <columns>
                         <TableColumn prefWidth="75.0" text="C1" />
                         <TableColumn prefWidth="75.0" text="C2" />
@@ -51,7 +51,7 @@
                      <children>
                         <StackPane prefHeight="88.0" prefWidth="356.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="ELIMINAR" />
+                              <Button mnemonicParsing="false" onAction="#eliminarProducto" prefHeight="45.0" prefWidth="120.0" text="ELIMINAR" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="88.0" prefWidth="356.0">
@@ -61,7 +61,7 @@
                         </StackPane>
                         <StackPane prefHeight="94.0" prefWidth="356.0">
                            <children>
-                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="NUEVO" />
+                              <Button mnemonicParsing="false" onAction="#clearVentana" prefHeight="45.0" prefWidth="120.0" text="NUEVO" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="94.0" prefWidth="356.0">
@@ -77,17 +77,17 @@
                <children>
                   <StackPane prefHeight="46.0" prefWidth="327.0">
                      <children>
-                        <Label text="username" />
+                        <Label id="empleadoName" fx:id="empleadoName" text="username" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="46.0" prefWidth="421.0">
                      <children>
-                        <Label text="fecha" />
+                        <Label fx:id="date" text="fecha" />
                      </children>
                   </StackPane>
                   <StackPane prefHeight="46.0" prefWidth="334.0">
                      <children>
-                        <Label text="hora" />
+                        <Label fx:id="hora" text="hora" />
                      </children>
                   </StackPane>
                </children>
