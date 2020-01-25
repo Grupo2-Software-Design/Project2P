@@ -6,6 +6,9 @@
 package controlador;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.Date;
 import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -19,7 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import modelo.Cotizacion;
-import modelo.Factura;
+import proyectods.ProyectoDS;
 
 /**
  * FXML Controller class
@@ -30,7 +33,7 @@ public class FacturarVentanaController extends StackPane implements Initializabl
     private Main application;
     @FXML
     private TableView<?> ventanaPro;
-    public static Factura factura;
+    public static Cotizacion factura;
     @FXML
     private TextField cedula;
     /**
@@ -110,17 +113,41 @@ public class FacturarVentanaController extends StackPane implements Initializabl
     
     @FXML
     private void facturarListo(ActionEvent event) {
-        String query = "insert into factura values (default,'"+total+"','"++"','"+ciudad+"','"+cPrincipal+"','"+cSecundaria+"');";
+        //ventanaPro.get
+        String query = "insert into factura values (default,'"+total+"','"+cedula.getText()+"','"+Main.usuario+"','"+new Date()+"','"+cSecundaria+"');";
+        String query2="insert into factura values (default,'"+total+"','"+cedula.getText()+"','"+Main.usuario+"','"+new Date()+"','"+cSecundaria+"');";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+            String q2 = "SELECT LAST_INSERT_ID() as id";
+            st.executeQuery(q2);
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
     }
-
-    id_factura int,
-    total float,
-    cliente varchar(10),
-    empleado varchar(10),
-    fecha date,
-    pago int,
-    estado boolean,
-    primary key (id_factura),
+    
+    create table detallerServicio(
+	id_detalle int,
+    servicio int,
+    cantidad int,
+    precio_venta float,
+    factura int,
+    primary key (id_detalle),
+    foreign key (servicio) references servicio(id_servicio),
+    foreign key (factura) references Factura(id_factura)
+);
+    
+create table DetalleProducto(
+	id_detalle int,
+    producto int,
+    cantidad int,
+    precio_venta float,
+    factura int,
+    primary key (id_detalle),
+    foreign key (producto) references Producto(id_producto),
+    foreign key (factura) references Factura(id_factura)
+);
     
     public int addDireccion(int mz,String slr,String ciudad,String cPrincipal, String cSecundaria){
         String query = "insert into Direccion values ( default,'"+mz+"','"+slr+"','"+ciudad+"','"+cPrincipal+"','"+cSecundaria+"');";
