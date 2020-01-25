@@ -24,8 +24,8 @@
             </StackPane>
             <HBox prefHeight="149.0" prefWidth="1080.0">
                <children>
-                  <Pane prefHeight="149.0" prefWidth="217.0" />
-                  <VBox prefHeight="149.0" prefWidth="270.0">
+                  <Pane prefHeight="149.0" prefWidth="17.0" />
+                  <VBox prefHeight="149.0" prefWidth="196.0">
                      <children>
                         <StackPane prefHeight="75.0" prefWidth="270.0">
                            <children>
@@ -38,13 +38,13 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField prefHeight="31.0" prefWidth="174.0" />
+                              <TextField fx:id="nombre" prefHeight="23.0" prefWidth="194.0" />
                            </children>
                         </StackPane>
                      </children>
                   </VBox>
-                  <Pane prefHeight="149.0" prefWidth="217.0" />
-                  <VBox prefHeight="149.0" prefWidth="270.0">
+                  <Pane prefHeight="149.0" prefWidth="18.0" />
+                  <VBox prefHeight="149.0" prefWidth="196.0">
                      <children>
                         <StackPane prefHeight="75.0" prefWidth="270.0">
                            <children>
@@ -57,13 +57,13 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="apellido" />
                            </children>
                         </StackPane>
                      </children>
                   </VBox>
-                  <Pane prefHeight="149.0" prefWidth="217.0" />
-                  <VBox prefHeight="149.0" prefWidth="270.0">
+                  <Pane prefHeight="149.0" prefWidth="12.0" />
+                  <VBox prefHeight="149.0" prefWidth="196.0">
                      <children>
                         <StackPane prefHeight="75.0" prefWidth="270.0">
                            <children>
@@ -76,12 +76,49 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="cedula" />
                            </children>
                         </StackPane>
                      </children>
                   </VBox>
-                  <Pane prefHeight="200.0" prefWidth="200.0" />
+                  <Pane prefHeight="149.0" prefWidth="15.0" />
+                  <VBox prefHeight="149.0" prefWidth="196.0">
+                     <children>
+                        <StackPane prefHeight="75.0" prefWidth="270.0">
+                           <children>
+                              <Label text="CORREO">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="76.0" prefWidth="270.0">
+                           <children>
+                              <TextField fx:id="correo" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <Pane layoutX="421.0" layoutY="10.0" prefHeight="149.0" prefWidth="12.0" />
+                  <VBox layoutX="233.0" layoutY="10.0" prefHeight="149.0" prefWidth="196.0">
+                     <children>
+                        <StackPane prefHeight="75.0" prefWidth="270.0">
+                           <children>
+                              <Label text="TELEFONO">
+                                 <font>
+                                    <Font size="30.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
+                        <StackPane prefHeight="76.0" prefWidth="270.0">
+                           <children>
+                              <TextField fx:id="telefono" />
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
             <Pane prefHeight="16.0" prefWidth="1080.0" />
@@ -110,7 +147,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField prefHeight="31.0" prefWidth="174.0" />
+                              <TextField fx:id="ciudad" prefHeight="31.0" prefWidth="174.0" />
                            </children>
                         </StackPane>
                      </children>
@@ -129,7 +166,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="mz" />
                            </children>
                         </StackPane>
                      </children>
@@ -148,7 +185,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="slr" />
                            </children>
                         </StackPane>
                      </children>
@@ -173,7 +210,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField prefHeight="31.0" prefWidth="174.0" />
+                              <TextField fx:id="calleP" prefHeight="31.0" prefWidth="174.0" />
                            </children>
                         </StackPane>
                      </children>
@@ -192,7 +229,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="calleS" />
                            </children>
                         </StackPane>
                      </children>
@@ -210,7 +247,7 @@
                   <Pane prefHeight="116.0" prefWidth="225.0" />
                   <StackPane prefHeight="104.0" prefWidth="256.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="141.0" text="AGREGAR" />
+                        <Button mnemonicParsing="false" onAction="#agregarCliente" prefHeight="51.0" prefWidth="141.0" text="AGREGAR" />
                      </children>
                   </StackPane>
                </children>

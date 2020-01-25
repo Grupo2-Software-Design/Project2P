@@ -42,7 +42,7 @@
                               </StackPane>
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <ComboBox prefWidth="150.0" />
+                                    <ComboBox fx:id="buscarPor" prefWidth="150.0" />
                                  </children>
                               </StackPane>
                            </children>
@@ -52,12 +52,12 @@
                               <Pane prefHeight="50.0" prefWidth="23.0" />
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <TextField />
+                                    <TextField fx:id="campoBusqueda" />
                                  </children>
                               </StackPane>
                               <StackPane prefHeight="50.0" prefWidth="134.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefWidth="97.0" text="BUSCAR" />
+                                    <Button mnemonicParsing="false" onAction="#buscarArticulo" prefWidth="97.0" text="BUSCAR" />
                                  </children>
                               </StackPane>
                            </children>
@@ -79,7 +79,7 @@
                               </StackPane>
                               <StackPane prefHeight="50.0" prefWidth="86.0">
                                  <children>
-                                    <TextField prefHeight="31.0" prefWidth="127.0" />
+                                    <TextField fx:id="cantidad" prefHeight="31.0" prefWidth="127.0" />
                                  </children>
                               </StackPane>
                            </children>
@@ -89,7 +89,7 @@
                               <Pane prefHeight="50.0" prefWidth="23.0" />
                               <StackPane prefHeight="50.0" prefWidth="272.0">
                                  <children>
-                                    <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="258.0" text="COLOCAR" />
+                                    <Button mnemonicParsing="false" onAction="#colocarProducto" prefHeight="31.0" prefWidth="258.0" text="COLOCAR" />
                                  </children>
                               </StackPane>
                            </children>
@@ -99,10 +99,15 @@
                </children>
             </HBox>
             <Pane prefHeight="43.0" prefWidth="1080.0" />
-            <TableView prefHeight="382.0" prefWidth="1080.0">
+            <TableView fx:id="productosTable" prefHeight="382.0" prefWidth="1080.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="id" prefWidth="48.0" text="id" />
+                  <TableColumn fx:id="nombre" prefWidth="326.0" text="Nombre" />
+                  <TableColumn fx:id="stock" minWidth="0.0" prefWidth="78.0" text="Stock" />
+                  <TableColumn fx:id="pvIn" minWidth="0.0" prefWidth="134.0" text="Precio Individual" />
+                  <TableColumn fx:id="pvM" prefWidth="138.0" text="Precio por Mayor" />
+                  <TableColumn fx:id="categoria" prefWidth="76.0" text="Categoria" />
+                  <TableColumn fx:id="descripcion" prefWidth="271.0" text="Descripcion" />
                </columns>
             </TableView>
             <HBox prefHeight="76.0" prefWidth="720.0">
