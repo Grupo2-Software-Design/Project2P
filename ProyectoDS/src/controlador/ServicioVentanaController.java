@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -132,18 +133,19 @@ public class ServicioVentanaController extends StackPane implements Initializabl
     @FXML
     private void searchServicio(ActionEvent event) {
         String query = "SELECT * FROM Servicio where" + combobox.getValue() + "like \"%{$" + txtFieldBuscar.getText() + "}%\" estado = 1;";
+        ObservableList<Servicio> service = FXCollections.observableArrayList();
         try {
             Statement st = ProyectoDS.cdb.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
                 float precio = Float.parseFloat(rs.getString("precio"));
                 Servicio prd = new Servicio(Integer.parseInt(rs.getString("id_producto")),rs.getString("nombre"),rs.getString("descripcion"),precio);
-                servicio.add(prd);
+                service.add(prd);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductoVentanaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tabla.setItems((ObservableList<Servicio>) servicio);
+        tabla.setItems(service);
         txtFieldBuscar.setText(null);
     }
     @FXML

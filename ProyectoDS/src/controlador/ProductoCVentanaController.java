@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -90,7 +91,7 @@ public class ProductoCVentanaController extends StackPane implements Initializab
 
     @FXML
     private void buscarArticulo(ActionEvent event) {
-        List<Producto> productos = new LinkedList<>();
+        ObservableList<Producto> productos = FXCollections.observableArrayList();
         String query = "SELECT * FROM Producto  WHERE "+buscarPor.getValue()+" LIKE '%{$"+campoBusqueda.getText()+"}% and estado = 1;";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
@@ -103,7 +104,7 @@ public class ProductoCVentanaController extends StackPane implements Initializab
                 prd.setId(rs.getString("id_producto"));
                 productos.add(prd);
             }
-            productosTable.setItems((ObservableList<Producto>) productos);
+            productosTable.setItems(productos);
             campoBusqueda.setText("");
             
             

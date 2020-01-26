@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -79,7 +80,7 @@ public class ServicioCVentanaController extends StackPane implements Initializab
 
     @FXML
     private void buscar(ActionEvent event) {
-        List<Servicio> servicios= new LinkedList<>();
+        ObservableList<Servicio> servicios = FXCollections.observableArrayList();
         String query = "SELECT * FROM Producto  WHERE "+combobox.getValue()+" LIKE '%{$"+parametro.getText()+"}% and estado = 1;";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
@@ -90,7 +91,7 @@ public class ServicioCVentanaController extends StackPane implements Initializab
                 Servicio srv = new Servicio(id,rs.getString("nombre"),rs.getString("descripcion"),precio);
                 servicios.add(srv);
             }
-            table.setItems((ObservableList<Servicio>) servicios);
+            table.setItems(servicios);
             parametro.setText("");     
         }
         catch(Exception e){

@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -151,11 +152,22 @@ public class CotizarVentanaController extends StackPane implements Initializable
     }
     
     private Empleado getEmpleado(){
-        String query = "SELECT * FROM Empleado where nombre_usuario = "+application.getUser().getUsername()+";";
+        String query = "SELECT * FROM Empleado where nombre_usuario = '"+Main.user.getUsername()+"';";
+        
+        System.out.println(query);
         try{
             Statement st = ProyectoDS.cdb.createStatement();
             ResultSet rs = st.executeQuery(query);
-            return new Empleado(rs.getString("cedula"),rs.getNString("nombre"),rs.getString("apellido"),rs.getString("telefono"),application.getUser(),rs.getString("tipo_empleado"),null);
+            rs.next();
+            String cd = rs.getString("cedula");
+
+            String query1 = "SELECT * FROM Persona where cedula = '"+cd+"';";
+            ResultSet rss = st.executeQuery(query1);
+            rss.next();
+            String name = rss.getNString("nombre");
+            String apellido = rss.getString("apellido");
+            String telf = rss.getString("telefono");
+            return new Empleado(cd,name,apellido,telf,application.getUser(),rs.getString("tipo_empleado"),null);
           
         }
         catch(Exception e){
@@ -181,14 +193,15 @@ public class CotizarVentanaController extends StackPane implements Initializable
         return sdf.format(dt);
     }
     private void llenarTabla(){
-        table.setItems((ObservableList<Venta>) cotizacion.getVentas());
         idColumn.setCellValueFactory(new PropertyValueFactory<Venta,Integer>("id"));
         tipoColumn.setCellValueFactory(new PropertyValueFactory<Venta,String>("tipo"));
         nombreColumn.setCellValueFactory(new PropertyValueFactory<Venta,String>("name"));
         cantidadColumn.setCellValueFactory(new PropertyValueFactory<Venta,Integer>("cantidad"));
         pvUnidad.setCellValueFactory(new PropertyValueFactory<Venta,Float>("pvUnidad"));
         totalColumn.setCellValueFactory(new PropertyValueFactory<Venta,Float>("total"));
-        
+        ObservableList<Venta> ventas  = FXCollections.observableArrayList();
+        ventas.addAll(cotizacion.getVentas());
+        table.setItems(ventas);       
     }
 
     

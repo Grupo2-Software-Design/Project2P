@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -98,6 +99,7 @@ public class ProductoVentanaController extends StackPane implements Initializabl
 
     @FXML
     private void searchArticulo(ActionEvent event) {
+        ObservableList<Producto> products = FXCollections.observableArrayList();
         String query = "SELECT * FROM Producto where"+combobox.getValue()+"like \"%{$"+searchArtTxtfield.getText()+"}%\" estado = 1;";
         try {
             Statement st = ProyectoDS.cdb.createStatement();
@@ -108,12 +110,12 @@ public class ProductoVentanaController extends StackPane implements Initializabl
                 float prvI = Float.parseFloat(rs.getString("precio_individual"));
                 Producto prd = new Producto(rs.getString("nombre"), stk, prvI, prvM, rs.getString("categoria"), rs.getString("descripcion"));
                 prd.setId(rs.getString("id_producto"));
-                productos.add(prd);
+                products.add(prd);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductoVentanaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-         tabla.setItems((ObservableList<Producto>) productos);
+         tabla.setItems(products);
          searchArtTxtfield.setText(null);
     }    
 

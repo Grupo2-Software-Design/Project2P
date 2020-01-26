@@ -29,7 +29,7 @@ public class Main extends Application {
     private Stage stage;
     private final double MINIMUM_WINDOW_WIDTH = 1080.0;
     private final double MINIMUM_WINDOW_HEIGHT = 720.0;
-    private Usuario user;
+    public static Usuario user;
     @Override
     public void start(Stage primaryStage) throws Exception {
         try {
