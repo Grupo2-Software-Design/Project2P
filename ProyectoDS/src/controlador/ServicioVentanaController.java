@@ -83,7 +83,7 @@ public class ServicioVentanaController extends StackPane implements Initializabl
         } catch (SQLException ex) {
             Logger.getLogger(ProductoVentanaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        comboboxMascota.getItems().addAll(mascota);
+        comboboxMascota.getItems().addAll(mascotas);
         // TODO
     }
 
