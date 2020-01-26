@@ -10,7 +10,10 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
+import modelo.Entrega;
 
 /**
  * FXML Controller class
@@ -19,6 +22,18 @@ import javafx.scene.layout.StackPane;
  */
 public class EntregasVentanaController extends StackPane implements Initializable {
     private Main application;
+    @FXML
+    private TableView<Entrega> entrega;
+    @FXML
+    private TableColumn<Entrega, String> cliente;
+    @FXML
+    private TableColumn<Entrega, String> direccion;
+    @FXML
+    private TableColumn<Entrega, String> descripcion;
+    @FXML
+    private TableColumn<Entrega, String> repartidor;
+    @FXML
+    private TableColumn<Entrega, String> estado;
     /**
      * Initializes the controller class.
      * @param url
@@ -26,7 +41,7 @@ public class EntregasVentanaController extends StackPane implements Initializabl
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
 
     @FXML

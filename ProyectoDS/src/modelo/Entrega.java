@@ -5,29 +5,67 @@
  */
 package modelo;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  *
  * @author NICOLE
  */
-public class Entrega implements Iterator{
-    private ConformidadCliente conformidad;
-    private Cliente cliente;
-    private List<Producto> productos = new LinkedList<>();
-    private Empleado empleado;
+public class Entrega{
+    private String Cliente;
+    private String Direccion;
+    private String Descripcion;
+    private String Repartidor;
+    private String Estado;
+
+    public Entrega(String Cliente, String Direccion, String Descripcion, String Repartidor, String Estado) {
+        this.Cliente = Cliente;
+        this.Direccion = Direccion;
+        this.Descripcion = Descripcion;
+        this.Repartidor = Repartidor;
+        this.Estado = Estado;
+    }
+
+    public String getCliente() {
+        return Cliente;
+    }
+
+    public void setCliente(String Cliente) {
+        this.Cliente = Cliente;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public String getDescripcion() {
+        return Descripcion;
+    }
+
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
+    }
+
+    public String getRepartidor() {
+        return Repartidor;
+    }
+
+    public void setRepartidor(String Repartidor) {
+        this.Repartidor = Repartidor;
+    }
+
+    public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
     
-
-    @Override
-    public boolean hasNext() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object next() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    
     
 }

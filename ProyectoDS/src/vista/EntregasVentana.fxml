@@ -24,10 +24,13 @@
                </children>
             </StackPane>
             <Pane prefHeight="67.0" prefWidth="1080.0" />
-            <TableView prefHeight="512.0" prefWidth="1080.0">
+            <TableView fx:id="entrega" prefHeight="512.0" prefWidth="1080.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="cliente" prefWidth="203.0" text="CLIENTE" />
+                <TableColumn fx:id="direccion" prefWidth="290.00001525878906" text="DIRECCION" />
+                  <TableColumn fx:id="descripcion" prefWidth="251.0" text="DESCRIPCION" />
+                  <TableColumn fx:id="repartidor" prefWidth="201.0" text="REPARTIDOR" />
+                  <TableColumn fx:id="estado" prefWidth="134.0" text="ESTADO" />
               </columns>
             </TableView>
             <HBox prefHeight="76.0" prefWidth="720.0">
