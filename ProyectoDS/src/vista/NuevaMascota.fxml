@@ -39,7 +39,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField prefHeight="31.0" prefWidth="174.0" />
+                              <TextField fx:id="nombre" prefHeight="31.0" prefWidth="174.0" />
                            </children>
                         </StackPane>
                      </children>
@@ -58,7 +58,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="tipo" />
                            </children>
                         </StackPane>
                      </children>
@@ -77,7 +77,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="raza" />
                            </children>
                         </StackPane>
                      </children>
@@ -111,7 +111,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField prefHeight="31.0" prefWidth="174.0" />
+                              <TextField fx:id="peso" prefHeight="31.0" prefWidth="174.0" />
                            </children>
                         </StackPane>
                      </children>
@@ -130,7 +130,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="altura" />
                            </children>
                         </StackPane>
                      </children>
@@ -149,7 +149,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <TextField />
+                              <TextField fx:id="edad" />
                            </children>
                         </StackPane>
                      </children>
@@ -174,7 +174,7 @@
                         </StackPane>
                         <StackPane prefHeight="76.0" prefWidth="270.0">
                            <children>
-                              <ComboBox prefWidth="150.0" />
+                              <ComboBox fx:id="comboSize" prefWidth="150.0" />
                            </children>
                         </StackPane>
                      </children>
@@ -194,7 +194,7 @@
                   <Pane prefHeight="116.0" prefWidth="225.0" />
                   <StackPane prefHeight="104.0" prefWidth="256.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="51.0" prefWidth="141.0" text="AGREGAR" />
+                        <Button fx:id="addButton" mnemonicParsing="false" onAction="#addMascota" prefHeight="51.0" prefWidth="141.0" text="AGREGAR" />
                      </children>
                   </StackPane>
                </children>
