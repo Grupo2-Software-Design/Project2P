@@ -6,9 +6,11 @@
 package controlador;
 
 import java.net.URL;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,6 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import modelo.Cotizacion;
 import modelo.Venta;
+import proyectods.ProyectoDS;
 
 /**
  * FXML Controller class
@@ -34,9 +37,9 @@ public class CotizarVentanaController extends StackPane implements Initializable
     @FXML
     private Label hora;
     @FXML
-    private TableView<?> table;
+    private TableView<Venta> table;
     
-    public static Cotizacion cotizacion;
+    public static Cotizacion cotizacion= new Cotizacion();
     @FXML
     private TableColumn<Venta, Integer> idColumn;
     @FXML
@@ -106,6 +109,14 @@ public class CotizarVentanaController extends StackPane implements Initializable
 
     @FXML
     private void makeCotizacion(ActionEvent event) {
+        String query = "insert into Cotizacion values ("+cotizacion.getNumCotizacion()+","+nombre+","+stock+","+precioIndividual+","+precioMayor+", 1,"+categoria+","+descripcion+")";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
     }
 
     @FXML
@@ -125,6 +136,7 @@ public class CotizarVentanaController extends StackPane implements Initializable
     }
     
     private void llenarTabla(){
+        table.setItems((ObservableList<Venta>) cotizacion.getVentas());
         idColumn.setCellValueFactory(new PropertyValueFactory<Venta,Integer>("id"));
         tipoColumn.setCellValueFactory(new PropertyValueFactory<Venta,String>("tipo"));
         nombreColumn.setCellValueFactory(new PropertyValueFactory<Venta,String>("name"));

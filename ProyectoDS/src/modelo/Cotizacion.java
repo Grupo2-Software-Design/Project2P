@@ -19,8 +19,7 @@ public class Cotizacion extends Documento{
     private int numCotizacion;
     private List<Venta> ventas;
 
-    public Cotizacion(int numCotizacion) {
-        this.numCotizacion = numCotizacion;
+    public Cotizacion() {
         ventas = new LinkedList<>();
         getCotizacionID();
     }
