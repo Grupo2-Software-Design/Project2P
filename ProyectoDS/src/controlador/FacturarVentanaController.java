@@ -25,6 +25,7 @@ import javafx.scene.layout.StackPane;
 import modelo.Cliente;
 import modelo.Cotizacion;
 import modelo.EfectivoStrategy;
+import modelo.Empleado;
 import modelo.Factura;
 import modelo.StrategyPay;
 import modelo.Venta;
@@ -122,29 +123,30 @@ public class FacturarVentanaController extends StackPane implements Initializabl
             }
         }
     }
-    
-    /*@FXML
-    private void facturarListo(ActionEvent event) {
-        factura =new Factura(0,domicilio.isSelected(),null, new EfectivoStrategy());
-        LinkedList<Venta> ventas=new LinkedList<>(); 
-        for(int i=0, i<id){
-            
-        }
-        
-    }
-    
-    @FXML
-    private void actualizar(ActionEvent event) {
-    }*/
 
     @FXML
     private void facturarListo(ActionEvent event) {
-        
         searchCliente(cedula.getText());
-    }
-
-    @FXML
-    private void actualizar(ActionEvent event) {
+        Empleado em=getEmpleado();
+        String query ="insert into Factura values ("+factura.getNumFactura()+","+factura.sumTotal()+","+cliente.getCedula()+em.getCedula()+","+new Date()+","+factura.sumTotal()+");";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            st.executeQuery(query);
+            String q2;
+            for(Venta v:factura.getVentas()){
+                if(v.getProducto()!=null){
+                    q2 = "insert into DetalleProducto values ("+v.getId()+","+v.getProducto().getId()+","+v.getCantidad()+","+v.getPvUnidad()+","+factura.getNumFactura()+",null);";
+                }else{
+                    q2 = "insert into DetallerServicio values ("+v.getId()+","+v.getServicio().getId()+","+v.getCantidad()+","+v.getPvUnidad()+","+factura.getNumFactura()+",null);";
+                }
+                st = ProyectoDS.cdb.createStatement();
+                st.executeQuery(q2);
+            }
+            clear();
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
     }
     
     public Cliente searchCliente(String cedula){
@@ -166,4 +168,25 @@ public class FacturarVentanaController extends StackPane implements Initializabl
         return null;
     }
    
+    private Empleado getEmpleado(){
+        String query = "SELECT * FROM Empleado where nombre_usuario = "+application.getUser().getUsername()+";";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            return new Empleado(rs.getString("cedula"),rs.getNString("nombre"),rs.getString("apellido"),rs.getString("telefono"),application.getUser(),rs.getString("tipo_empleado"),null);
+          
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return null;
+    }
+    
+    private void clear(){
+        id.getColumns().removeAll(id.getColumns());
+        tipo.getColumns().removeAll(tipo.getColumns());
+        nombre.getColumns().removeAll(nombre.getColumns());
+        canti.getColumns().removeAll(canti.getColumns());
+    }
+    
 }

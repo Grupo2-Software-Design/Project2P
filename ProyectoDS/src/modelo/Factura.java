@@ -17,11 +17,10 @@ public class Factura extends Documento{
     private LinkedList<Venta> ventas;
     private StrategyPay metodoPago;
 
-    public Factura(int numFactura, boolean domicilio, LinkedList<Venta> ventas, StrategyPay metodoPago) {
-        this.numFactura = numFactura;
-        this.domicilio = domicilio;
-        this.ventas = ventas;
-        this.metodoPago = metodoPago;
+    public Factura(boolean domicilio) {
+        getFacturaID();
+        metodoPago=new TrajetaCredito();
+        this.ventas=new LinkedList<>();
     }
 
     public int getNumFactura() {
@@ -97,5 +96,11 @@ public class Factura extends Documento{
         
     }
     
-    
+    public float sumTotal(){
+        float cont = 0;
+        for(Venta v:ventas){
+            cont+=v.getTotal();
+        }
+        return cont;
+    }
 }

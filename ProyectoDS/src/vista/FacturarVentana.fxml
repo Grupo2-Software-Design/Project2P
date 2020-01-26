@@ -114,7 +114,7 @@
                         </StackPane>
                         <StackPane prefHeight="94.0" prefWidth="356.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#actualizar" prefHeight="45.0" prefWidth="120.0" text="NUEVO" />
+                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="NUEVO" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="94.0" prefWidth="356.0">
