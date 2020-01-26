@@ -104,7 +104,7 @@
                      <children>
                         <StackPane prefHeight="88.0" prefWidth="356.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#eliminarProducto" prefHeight="45.0" prefWidth="120.0" text="ELIMINAR" />
+                              <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="120.0" text="ELIMINAR" />
                            </children>
                         </StackPane>
                         <StackPane prefHeight="88.0" prefWidth="356.0">

@@ -14,7 +14,6 @@ import java.util.Observable;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +22,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import modelo.Cliente;
 import modelo.Cotizacion;
 import modelo.EfectivoStrategy;
 import modelo.Factura;
@@ -36,7 +36,7 @@ import proyectods.ProyectoDS;
  * @author NICOLE
  */
 public class FacturarVentanaController extends StackPane implements Initializable {
-    static String ced;
+    static Cliente cliente;
     private Main application;
     @FXML
     private TableView<?> ventanaPro;
@@ -122,12 +122,6 @@ public class FacturarVentanaController extends StackPane implements Initializabl
             }
         }
     }
-
-    @FXML
-    private void eliminarProducto(ActionEvent event) {
-        
-        ventanaPro.getSelectionModel().getSelectedItem();
-    }
     
     /*@FXML
     private void facturarListo(ActionEvent event) {
@@ -142,6 +136,34 @@ public class FacturarVentanaController extends StackPane implements Initializabl
     @FXML
     private void actualizar(ActionEvent event) {
     }*/
+
+    @FXML
+    private void facturarListo(ActionEvent event) {
+        
+        searchCliente(cedula.getText());
+    }
+
+    @FXML
+    private void actualizar(ActionEvent event) {
+    }
     
-    
+    public Cliente searchCliente(String cedula){
+        String query = "SELECT * FROM Persona  WHERE cedula = "+cedula+";";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            String cedu = rs.getString("cedula");
+            String name = rs.getString("nombre");
+            String last = rs.getString("apellido");
+            int direc=Integer.parseInt(rs.getString("direccion"));
+            String telefon=rs.getString("telefono");
+            String correo=rs.getString("correo");
+            cliente=new Cliente(cedu, name, last, direc, correo,telefon);       
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return null;
+    }
+   
 }
