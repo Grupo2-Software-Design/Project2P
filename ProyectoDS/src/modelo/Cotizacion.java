@@ -78,4 +78,12 @@ public class Cotizacion extends Documento{
         
     }
     
+    public float sumTotal(){
+        float cont = 0;
+        for(Venta v:ventas){
+            cont+=v.getTotal();
+        }
+        return cont;
     }
+    
+}

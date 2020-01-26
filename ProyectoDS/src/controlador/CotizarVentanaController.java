@@ -6,7 +6,9 @@
 package controlador;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import modelo.Cotizacion;
+import modelo.Empleado;
 import modelo.Venta;
 import proyectods.ProyectoDS;
 
@@ -38,6 +41,7 @@ public class CotizarVentanaController extends StackPane implements Initializable
     private Label hora;
     @FXML
     private TableView<Venta> table;
+    
     
     public static Cotizacion cotizacion= new Cotizacion();
     @FXML
@@ -60,8 +64,19 @@ public class CotizarVentanaController extends StackPane implements Initializable
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         llenarTabla();
+        empleadoName.setText(getEmpleado().getNombre());
+        date.setText(getDate());
+        hora.setText(getHour());
+        
     }    
-
+    private String getHour(){
+        Calendar calendario = Calendar.getInstance();
+        int hora, minutos, segundos;
+        hora =calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND);
+        return hora + ":" + minutos + ":" + segundos;
+    }
     @FXML
     private void backToMenu(ActionEvent event) {
         if (application == null){
@@ -109,10 +124,22 @@ public class CotizarVentanaController extends StackPane implements Initializable
 
     @FXML
     private void makeCotizacion(ActionEvent event) {
-        String query = "insert into Cotizacion values ("+cotizacion.getNumCotizacion()+","+nombre+","+stock+","+precioIndividual+","+precioMayor+", 1,"+categoria+","+descripcion+")";
+        Empleado emp = getEmpleado();
+
+        String query = "insert into Cotizacion values ("+cotizacion.getNumCotizacion()+","+cotizacion.sumTotal()+","+emp.getCedula()+","+getDate()+")";
         try{
             Statement st = ProyectoDS.cdb.createStatement();
             st.executeQuery(query);
+            String q2;
+            for(Venta v:cotizacion.getVentas()){
+                if(v.getProducto()!=null){
+                    q2 = "insert into DetalleProducto values ("+v.getId()+","+v.getProducto().getId()+","+v.getCantidad()+","+v.getPvUnidad()+",null,"+cotizacion.getNumCotizacion()+");";
+                }else{
+                    q2 = "insert into DetallerServicio values ("+v.getId()+","+v.getServicio().getId()+","+v.getCantidad()+","+v.getPvUnidad()+",null,"+cotizacion.getNumCotizacion()+");";
+                }
+                st = ProyectoDS.cdb.createStatement();
+                st.executeQuery(q2);
+            }
         }
         catch(Exception e){
             System.out.println("Problemas en la Query, "+e);
@@ -122,7 +149,21 @@ public class CotizarVentanaController extends StackPane implements Initializable
     @FXML
     private void eliminarProducto(ActionEvent event) {
     }
+    
+    private Empleado getEmpleado(){
+        String query = "SELECT * FROM Empleado where nombre_usuario = "+application.getUser().getUsername()+";";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            return new Empleado(rs.getString("cedula"),rs.getNString("nombre"),rs.getString("apellido"),rs.getString("telefono"),application.getUser(),rs.getString("tipo_empleado"),null);
+          
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
+        return null;
 
+    }
     @FXML
     private void clearVentana(ActionEvent event) {
         idColumn.getColumns().removeAll(idColumn.getColumns());
@@ -134,7 +175,11 @@ public class CotizarVentanaController extends StackPane implements Initializable
         
         
     }
-    
+    private String getDate(){
+        java.util.Date dt = new java.util.Date();
+        java.text.SimpleDateFormat sdf =new java.text.SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(dt);
+    }
     private void llenarTabla(){
         table.setItems((ObservableList<Venta>) cotizacion.getVentas());
         idColumn.setCellValueFactory(new PropertyValueFactory<Venta,Integer>("id"));

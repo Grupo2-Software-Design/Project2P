@@ -103,6 +103,7 @@ public class ServicioCVentanaController extends StackPane implements Initializab
         Servicio srv = table.getSelectionModel().getSelectedItem();
         Venta vt = new Venta(1,srv,"servicio");
         CotizarVentanaController.cotizacion.getVentas().add(vt);
+        
     }
     
 }
