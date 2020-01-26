@@ -20,8 +20,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import modelo.Cliente;
 import modelo.Mascota;
@@ -52,6 +54,14 @@ public class ServicioVentanaController extends StackPane implements Initializabl
     private Button btnColocar;
     @FXML
     private TableView<Servicio> tabla;
+    @FXML
+    private TableColumn<Servicio, Integer> TableColumnid;
+    @FXML
+    private TableColumn<Servicio, String> TableColumnNombre;
+    @FXML
+    private TableColumn<Servicio, Float> TableColumnPrecio;
+    @FXML
+    private TableColumn<Servicio, String> TableColumnDescripcion;
 
     /**
      * Initializes the controller class.
@@ -84,6 +94,7 @@ public class ServicioVentanaController extends StackPane implements Initializabl
             Logger.getLogger(ProductoVentanaController.class.getName()).log(Level.SEVERE, null, ex);
         }
         comboboxMascota.getItems().addAll(mascotas);
+        llenarTabla();
         // TODO
     }
 
@@ -105,7 +116,6 @@ public class ServicioVentanaController extends StackPane implements Initializabl
         this.application = application;
     }
 
-    @FXML
     public void gotoNuevaMascota(ActionEvent event) {
         if (application == null) {
             System.out.println("F");
@@ -136,11 +146,27 @@ public class ServicioVentanaController extends StackPane implements Initializabl
         tabla.setItems((ObservableList<Servicio>) servicio);
         txtFieldBuscar.setText(null);
     }
-
     @FXML
     private void addServicio(ActionEvent event) {
         Servicio servicio = tabla.getSelectionModel().getSelectedItem();
         Venta vt = new Venta(1,servicio,"Factura");
         FacturarVentanaController.factura.getVentas().add(vt);
+    }
+     @FXML
+    private void clearVentana(ActionEvent event) {
+        TableColumnid.getColumns().removeAll(TableColumnid.getColumns());
+        TableColumnNombre.getColumns().removeAll(TableColumnNombre.getColumns());
+        TableColumnPrecio.getColumns().removeAll(TableColumnPrecio.getColumns());
+        TableColumnDescripcion.getColumns().removeAll(TableColumnDescripcion.getColumns());
+        
+        
+    }
+    
+    private void llenarTabla(){
+        TableColumnid.setCellValueFactory(new PropertyValueFactory<Servicio,Integer>("id"));
+        TableColumnNombre.setCellValueFactory(new PropertyValueFactory<Servicio,String>("nombre"));
+        TableColumnPrecio.setCellValueFactory(new PropertyValueFactory<Servicio,Float>("precio"));
+        TableColumnDescripcion.setCellValueFactory(new PropertyValueFactory<Servicio,String>("descripcion"));
+
     }
 }

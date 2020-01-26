@@ -84,7 +84,7 @@
                               </StackPane>
                               <StackPane prefHeight="150.0" prefWidth="200.0">
                                  <children>
-                                    <Button mnemonicParsing="false" onAction="#gotoNuevaMascota" prefHeight="31.0" prefWidth="126.0" text="NUEVO" />
+                                    <Button mnemonicParsing="false" onAction="#clearVentana" prefHeight="31.0" prefWidth="126.0" text="NUEVO" />
                                  </children>
                               </StackPane>
                            </children>
@@ -94,7 +94,7 @@
                               <Pane prefHeight="47.0" prefWidth="114.0" />
                               <StackPane prefHeight="50.0" prefWidth="272.0">
                                  <children>
-                                    <Button fx:id="btnColocar" mnemonicParsing="false" onAction="#addMascota" prefHeight="31.0" prefWidth="258.0" text="COLOCAR" />
+                                    <Button fx:id="btnColocar" mnemonicParsing="false" onAction="#addServicio" prefHeight="31.0" prefWidth="258.0" text="COLOCAR" />
                                  </children>
                               </StackPane>
                            </children>
@@ -106,8 +106,10 @@
             <Pane prefHeight="43.0" prefWidth="1080.0" />
             <TableView fx:id="tabla" prefHeight="382.0" prefWidth="1080.0">
                <columns>
-                  <TableColumn prefWidth="75.0" text="C1" />
-                  <TableColumn prefWidth="75.0" text="C2" />
+                  <TableColumn fx:id="TableColumnid" prefWidth="111.0" text="id" />
+                  <TableColumn fx:id="TableColumnNombre" prefWidth="313.0" text="Nombre" />
+                  <TableColumn fx:id="TableColumnPrecio" minWidth="0.0" prefWidth="109.0" text="Precio" />
+                  <TableColumn fx:id="TableColumnDescripcion" prefWidth="546.0" text="Descripcion" />
                </columns>
             </TableView>
             <HBox prefHeight="76.0" prefWidth="720.0">
