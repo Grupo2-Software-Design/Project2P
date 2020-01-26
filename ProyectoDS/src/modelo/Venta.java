@@ -12,12 +12,21 @@ import proyectods.ProyectoDS;
 public class Venta{
     private int cantidad;
     private Producto producto;
+    private Servicio servicio;
     private String tipo;
     private int id;
+    private float total;
     
     public Venta(int cantidad, Producto producto, String tipo) {
         this.cantidad = cantidad;
         this.producto = producto;
+        this.tipo = tipo;
+        setVentaId();
+    }
+    
+    public Venta(int cantidad, Servicio servicio, String tipo) {
+        this.cantidad = cantidad;
+        this.servicio = servicio;
         this.tipo = tipo;
         setVentaId();
     }
@@ -37,7 +46,6 @@ public class Venta{
     public void setProducto(Producto producto) {
         this.producto = producto;
     }
-    
     private void setVentaId(){
         switch(tipo){
             case "producto":
@@ -47,6 +55,7 @@ public class Venta{
                     Statement st = ProyectoDS.cdb.createStatement();
                     ResultSet rs = st.executeQuery(query); 
                     id = Integer.parseInt(rs.getString("id_detalle"))+1;
+                    total=producto.getPrecioIndividual()*cantidad;
                 }catch(Exception e){
                     System.out.println("Problemas en la Query, "+e);
                 }

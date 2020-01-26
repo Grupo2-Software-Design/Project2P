@@ -6,18 +6,26 @@
 package controlador;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import modelo.Servicio;
+import modelo.Venta;
+import proyectods.ProyectoDS;
 
 /**
  * FXML Controller class
@@ -38,12 +46,14 @@ public class ServicioCVentanaController extends StackPane implements Initializab
     private TableColumn<Servicio, Float> precioColum;
     @FXML
     private TableColumn<Servicio, String> descripcionColum;
+    @FXML
+    private TableView<Servicio> table;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        combobox = new ComboBox<>();
+        combobox.getItems().removeAll(combobox.getItems());
         combobox.getItems().addAll("Nombre","Categoria","Descripcion"); //Llenando opciones del comboBox
         
     }    
@@ -69,10 +79,30 @@ public class ServicioCVentanaController extends StackPane implements Initializab
 
     @FXML
     private void buscar(ActionEvent event) {
+        List<Servicio> servicios= new LinkedList<>();
+        String query = "SELECT * FROM Producto  WHERE "+combobox.getValue()+" LIKE '%{$"+parametro.getText()+"}% and estado = 1;";
+        try{
+            Statement st = ProyectoDS.cdb.createStatement();
+            ResultSet rs = st.executeQuery(query);
+            while(rs.next()){
+                int id = Integer.parseInt(rs.getString("id_servicio"));
+                float precio = Float.parseFloat(rs.getString("precio"));
+                Servicio srv = new Servicio(id,rs.getString("nombre"),rs.getString("descripcion"),precio);
+                servicios.add(srv);
+            }
+            table.setItems((ObservableList<Servicio>) servicios);
+            parametro.setText("");     
+        }
+        catch(Exception e){
+            System.out.println("Problemas en la Query, "+e);
+        }
     }
 
     @FXML
     private void colocar(ActionEvent event) {
+        Servicio srv = table.getSelectionModel().getSelectedItem();
+        Venta vt = new Venta(1,srv,"servicio");
+        CotizarVentanaController.cotizacion.getVentas().add(vt);
     }
     
 }

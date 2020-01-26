@@ -68,7 +68,7 @@
                </children>
             </HBox>
             <Pane prefHeight="43.0" prefWidth="1080.0" />
-            <TableView prefHeight="382.0" prefWidth="1080.0">
+            <TableView fx:id="table" prefHeight="382.0" prefWidth="1080.0">
                <columns>
                   <TableColumn fx:id="idColum" prefWidth="75.0" text="id" />
                   <TableColumn fx:id="nombreColum" prefWidth="307.0" text="Nombre" />

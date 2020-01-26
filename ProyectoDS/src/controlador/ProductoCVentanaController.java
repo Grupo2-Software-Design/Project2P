@@ -62,7 +62,7 @@ public class ProductoCVentanaController extends StackPane implements Initializab
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        buscarPor = new ComboBox<>();
+        buscarPor.getItems().removeAll(buscarPor.getItems());
         buscarPor.getItems().addAll("Nombre","Categoria","Descripcion"); //Llenando opciones del comboBox
         
         
@@ -117,7 +117,7 @@ public class ProductoCVentanaController extends StackPane implements Initializab
     @FXML
     private void colocarProducto(ActionEvent event) {
         Producto prd = productosTable.getSelectionModel().getSelectedItem();
-        Venta vt = new Venta(Integer.parseInt(cantidad.getText()),prd,"cotizacion");
+        Venta vt = new Venta(Integer.parseInt(cantidad.getText()),prd,"producto");
         CotizarVentanaController.cotizacion.getVentas().add(vt);
         cantidad.setText("");
     }

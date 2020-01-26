@@ -13,9 +13,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.StackPane;
 import modelo.Cotizacion;
+import modelo.Venta;
 
 /**
  * FXML Controller class
@@ -34,6 +36,18 @@ public class CotizarVentanaController extends StackPane implements Initializable
     private TableView<?> table;
     
     public static Cotizacion cotizacion;
+    @FXML
+    private TableColumn<Venta, Integer> idColumn;
+    @FXML
+    private TableColumn<Venta, String> tipoColumn;
+    @FXML
+    private TableColumn<Venta, String> nombreColumn;
+    @FXML
+    private TableColumn<Venta, Integer> cantidadColumn;
+    @FXML
+    private TableColumn<Venta, Float> pvUnidad;
+    @FXML
+    private TableColumn<Venta, Float> totalColumn;
     /**
      * Initializes the controller class.
      * @param url
@@ -99,6 +113,14 @@ public class CotizarVentanaController extends StackPane implements Initializable
 
     @FXML
     private void clearVentana(ActionEvent event) {
+        idColumn.getColumns().removeAll(idColumn.getColumns());
+        tipoColumn.getColumns().removeAll(tipoColumn.getColumns());
+        nombreColumn.getColumns().removeAll(nombreColumn.getColumns());
+        cantidadColumn.getColumns().removeAll(cantidadColumn.getColumns());
+        pvUnidad.getColumns().removeAll(pvUnidad.getColumns());
+        totalColumn.getColumns().removeAll(totalColumn.getColumns());
+        
+        
     }
     
 

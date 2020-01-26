@@ -42,8 +42,12 @@
                <children>
                   <TableView fx:id="table" prefHeight="428.0" prefWidth="670.0">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn fx:id="idColumn" prefWidth="38.0" text="id" />
+                        <TableColumn fx:id="tipoColumn" prefWidth="101.0" text="Tipo" />
+                        <TableColumn fx:id="nombreColumn" prefWidth="189.0" text="Nombre" />
+                        <TableColumn fx:id="cantidadColumn" prefWidth="107.0" text="Cantidad" />
+                        <TableColumn fx:id="pvUnidad" prefWidth="114.0" text="Pv Unidad" />
+                        <TableColumn fx:id="totalColumn" minWidth="7.0" prefWidth="118.0" text="Total" />
                      </columns>
                   </TableView>
                   <Pane prefHeight="428.0" prefWidth="56.0" />
