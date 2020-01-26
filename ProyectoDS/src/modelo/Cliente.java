@@ -17,20 +17,21 @@ public class Cliente{
     private String cedula;
     private String nombre;
     private String apellido;
-    private String direccion;
+    private int direccion;
     private String correo;
+    private String telefono;
     private LinkedList<Mascota> mascotas;
 
     public Cliente() {
     }
 
-    public Cliente(String cedula, String nombre, String apellido, String direccion,String correo) {
+    public Cliente(String cedula, String nombre, String apellido, int direccion, String correo, String telefono) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
         this.direccion = direccion;
         this.correo = correo;
-        mascotas = new LinkedList<>();
+        this.telefono = telefono;
     }
 
     public String getCedula() {
@@ -57,11 +58,11 @@ public class Cliente{
         this.apellido = apellido;
     }
 
-    public String getDireccion() {
+    public int getDireccion() {
         return this.direccion;
     }
 
-    public void setDireccion(String direccion) {
+    public void setDireccion(int direccion) {
         this.direccion = direccion;
     }
 
@@ -80,7 +81,7 @@ public class Cliente{
         return this;
     }
 
-    public Cliente direccion(String direccion) {
+    public Cliente direccion(int direccion) {
         this.direccion = direccion;
         return this;
     }

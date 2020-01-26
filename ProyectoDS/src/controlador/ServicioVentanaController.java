@@ -23,8 +23,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
+import modelo.Cliente;
 import modelo.Mascota;
+import modelo.Producto;
 import modelo.Servicio;
+import modelo.Venta;
 import proyectods.ProyectoDS;
 
 /**
@@ -39,7 +42,8 @@ public class ServicioVentanaController extends StackPane implements Initializabl
     private ComboBox<String> combobox;
     @FXML
     private TextField txtFieldBuscar;
-    private List<Servicio> productos = new LinkedList<>();
+    private List<Servicio> servicio = new LinkedList<>();
+    private List<Mascota> mascotas = new LinkedList<>();
     @FXML
     private Button btnBuscar;
     @FXML
@@ -59,6 +63,27 @@ public class ServicioVentanaController extends StackPane implements Initializabl
     public void initialize(URL url, ResourceBundle rb) {
         combobox.getItems().removeAll();
         combobox.getItems().addAll("Nombre", "Categoria", "Descripción");
+        String q = "SELECT * FROM Mascota where " + FacturarVentanaController.cliente.getCedula() + " = dueño and estado = 1;";
+        try {
+            Statement st = ProyectoDS.cdb.createStatement();
+            ResultSet rs = st.executeQuery(q);
+            while (rs.next()) {
+                String nombreM = rs.getString("nombre");
+                String raza = rs.getString("raza");
+                int edad = Integer.parseInt(rs.getString("edad"));
+                float peso = Float.parseFloat(rs.getString("peso"));
+                float altura = Float.parseFloat(rs.getString("altura"));
+                String tipo = rs.getString("tipo");
+                String dueño = rs.getString("dueño");
+                String tamaño = rs.getString("tamaño");
+                //Cliente owner, String nombre, String raza, int edad, float peso, float altura, String tipo, String size
+                Mascota pet = new Mascota(FacturarVentanaController.cliente,nombreM,raza,edad,peso,altura,tipo,tamaño);
+                mascotas.add(pet);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductoVentanaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        comboboxMascota.getItems().addAll(mascotas);
         // TODO
     }
 
@@ -101,21 +126,21 @@ public class ServicioVentanaController extends StackPane implements Initializabl
             Statement st = ProyectoDS.cdb.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                float stk = Float.parseFloat(rs.getString("stock"));
-                float prvM = Float.parseFloat(rs.getString("precio_porMayor"));
-                float prvI = Float.parseFloat(rs.getString("precio_individual"));
-                Servicio prd = new Servicio(rs.getString("nombre"), stk, prvI, prvM, rs.getString("categoria"), rs.getString("descripcion"));
-                prd.setId(rs.getString("id_producto"));
-                productos.add(prd);
+                float precio = Float.parseFloat(rs.getString("precio"));
+                Servicio prd = new Servicio(Integer.parseInt(rs.getString("id_producto")),rs.getString("nombre"),rs.getString("descripcion"),precio);
+                servicio.add(prd);
             }
         } catch (SQLException ex) {
             Logger.getLogger(ProductoVentanaController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        tabla.setItems((ObservableList<Servicio>) productos);
+        tabla.setItems((ObservableList<Servicio>) servicio);
         txtFieldBuscar.setText(null);
     }
 
     @FXML
-    private void addMascota(ActionEvent event) {
+    private void addServicio(ActionEvent event) {
+        Servicio servicio = tabla.getSelectionModel().getSelectedItem();
+        Venta vt = new Venta(1,servicio,"Factura");
+        FacturarVentanaController.factura.getVentas().add(vt);
     }
 }
