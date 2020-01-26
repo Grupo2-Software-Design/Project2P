@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import modelo.Cotizacion;
 import modelo.Venta;
@@ -55,7 +56,7 @@ public class CotizarVentanaController extends StackPane implements Initializable
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        llenarTabla();
     }    
 
     @FXML
@@ -123,6 +124,15 @@ public class CotizarVentanaController extends StackPane implements Initializable
         
     }
     
+    private void llenarTabla(){
+        idColumn.setCellValueFactory(new PropertyValueFactory<Venta,Integer>("id"));
+        tipoColumn.setCellValueFactory(new PropertyValueFactory<Venta,String>("tipo"));
+        nombreColumn.setCellValueFactory(new PropertyValueFactory<Venta,String>("name"));
+        cantidadColumn.setCellValueFactory(new PropertyValueFactory<Venta,Integer>("cantidad"));
+        pvUnidad.setCellValueFactory(new PropertyValueFactory<Venta,Float>("pvUnidad"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<Venta,Float>("total"));
+        
+    }
 
     
     

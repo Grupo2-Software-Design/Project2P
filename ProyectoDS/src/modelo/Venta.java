@@ -16,6 +16,8 @@ public class Venta{
     private String tipo;
     private int id;
     private float total;
+    private String name;
+    private float pvUnidad;
     
     public Venta(int cantidad, Producto producto, String tipo) {
         this.cantidad = cantidad;
@@ -56,6 +58,8 @@ public class Venta{
                     ResultSet rs = st.executeQuery(query); 
                     id = Integer.parseInt(rs.getString("id_detalle"))+1;
                     total=producto.getPrecioIndividual()*cantidad;
+                    name = producto.getNombre();
+                    pvUnidad =producto.getPrecioIndividual();
                 }catch(Exception e){
                     System.out.println("Problemas en la Query, "+e);
                 }
@@ -67,6 +71,9 @@ public class Venta{
                     Statement st = ProyectoDS.cdb.createStatement();
                     ResultSet rs = st.executeQuery(query2); 
                     id = Integer.parseInt(rs.getString("id_detalle"))+1;
+                    total=servicio.getPrecio()*cantidad;
+                    name = servicio.getName();
+                    pvUnidad = servicio.getPrecio();
                 }catch(Exception e){
                     System.out.println("Problemas en la Query, "+e);
                 }
@@ -78,6 +85,54 @@ public class Venta{
             
             
         }
+
+    public Servicio getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(Servicio servicio) {
+        this.servicio = servicio;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public float getTotal() {
+        return total;
+    }
+
+    public void setTotal(float total) {
+        this.total = total;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getPvUnidad() {
+        return pvUnidad;
+    }
+
+    public void setPvUnidad(float pvUnidad) {
+        this.pvUnidad = pvUnidad;
+    }
     
 
 }
