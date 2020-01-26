@@ -10,13 +10,13 @@ public class Mascota{
     private String nombre;
     private String raza;
     private int edad;
-    private int peso;
+    private float peso;
     private float altura;
     private String tipo;
     private String size;
 
 
-    public Mascota(Cliente owner, String nombre, String raza, int edad, int peso, float altura, String tipo, String size) {
+    public Mascota(Cliente owner, String nombre, String raza, int edad, float peso, float altura, String tipo, String size) {
         this.owner = owner;
         this.nombre = nombre;
         this.raza = raza;
@@ -59,11 +59,11 @@ public class Mascota{
         this.edad = edad;
     }
 
-    public int getPeso() {
+    public float getPeso() {
         return this.peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(float peso) {
         this.peso = peso;
     }
 
