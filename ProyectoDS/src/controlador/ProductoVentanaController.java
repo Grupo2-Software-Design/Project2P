@@ -26,6 +26,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.StackPane;
 import modelo.Producto;
+import modelo.Servicio;
 import modelo.Venta;
 import proyectods.ProyectoDS;
 
@@ -72,6 +73,7 @@ public class ProductoVentanaController extends StackPane implements Initializabl
     public void initialize(URL url, ResourceBundle rb) {
         combobox.getItems().removeAll();
         combobox.getItems().addAll("Nombre", "Categoria", "Descripción");
+        llenarTabla();
     }    
 
     @FXML
@@ -101,7 +103,7 @@ public class ProductoVentanaController extends StackPane implements Initializabl
             Statement st = ProyectoDS.cdb.createStatement();
             ResultSet rs = st.executeQuery(query);
             while (rs.next()) {
-                float stk = Float.parseFloat(rs.getString("stock"));
+                float stk = Integer.parseInt(rs.getString("stock"));
                 float prvM = Float.parseFloat(rs.getString("precio_porMayor"));
                 float prvI = Float.parseFloat(rs.getString("precio_individual"));
                 Producto prd = new Producto(rs.getString("nombre"), stk, prvI, prvM, rs.getString("categoria"), rs.getString("descripcion"));
@@ -121,5 +123,17 @@ public class ProductoVentanaController extends StackPane implements Initializabl
         Venta vt = new Venta(Integer.parseInt(cantidadTxtField.getText()),prd,"Factura");
         FacturarVentanaController.factura.getVentas().add(vt);
         cantidadTxtField.setText(null); 
+    }
+    
+    private void llenarTabla(){
+        TableColumnid.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("id"));
+        TableColumnNombre.setCellValueFactory(new PropertyValueFactory<Producto,String>("Nombre"));
+        TableColumnStock.setCellValueFactory(new PropertyValueFactory<Producto,Integer>("Precio"));
+        TableColumnPrecioI.setCellValueFactory(new PropertyValueFactory<Producto,Float>("Precio Individual"));
+        TableColumnPrecioM.setCellValueFactory(new PropertyValueFactory<Producto,Float>("Precio Por Mayor"));
+        TableColumnCategoria.setCellValueFactory(new PropertyValueFactory<Producto,String>("Categoria"));
+        TableColumnDesc.setCellValueFactory(new PropertyValueFactory<Producto,String>("Descripcion"));
+        
+
     }
 }
